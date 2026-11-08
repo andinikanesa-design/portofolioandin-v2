@@ -4,70 +4,84 @@ import { notFound } from "next/navigation";
 import { proyek } from "@/data/proyek";
 
 export function generateStaticParams() {
-  return proyek.map((item) => ({ slug: item.slug }));
+  return proyek.map(({ slug }) => ({ slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const item = proyek.find((project) => project.slug === slug);
+  const item = proyek.find((proyekItem) => proyekItem.slug === slug);
+
+  if (!item) {
+    return {
+      title: "Proyek tidak ditemukan",
+    };
+  }
 
   return {
-    title: item?.judul ?? "Proyek tidak ditemukan",
-    description: item?.deskripsi ?? "Proyek yang dicari tidak ditemukan.",
+    title: item.judul,
+    description: item.deskripsi,
   };
 }
 
 export default async function DetailProyek({ params }) {
   const { slug } = await params;
-  const item = proyek.find((project) => project.slug === slug);
+  const item = proyek.find((proyekItem) => proyekItem.slug === slug);
 
   if (!item) {
     notFound();
   }
 
   return (
-    <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-12">
+    <main className="mx-auto w-full max-w-4xl px-5 py-10 md:px-8 md:py-16">
       <Link
         href="/proyek"
-        className="text-sm font-semibold text-aksen hover:underline"
+        className="font-semibold text-utama hover:underline dark:text-sky-200"
       >
         &larr; Kembali ke daftar proyek
       </Link>
-      <article className="mt-5">
-        <h1 className="text-3xl font-bold text-utama md:text-4xl">
-          {item.judul}
-        </h1>
-        <p className="mt-2 text-slate-600">{item.kategori}</p>
-        <Image
-          src={item.gambar}
-          alt={`Pratinjau tugas ${item.judul}`}
-          width={640}
-          height={420}
-          priority
-          className="mt-6 h-auto w-full rounded-xl border border-slate-200"
-        />
-        <p className="mt-6 leading-7 text-slate-700">{item.deskripsi}</p>
-        <h2 className="mt-8 text-2xl font-bold text-utama">
-          Teknologi yang digunakan
-        </h2>
-        <ul className="mt-3 flex flex-wrap gap-2">
-          {item.teknologi.map((teknologi) => (
-            <li
-              key={teknologi}
-              className="rounded-full bg-white px-3 py-1 text-sm font-medium text-utama ring-1 ring-slate-200"
-            >
-              {teknologi}
-            </li>
-          ))}
-        </ul>
-        <h2 className="mt-8 text-2xl font-bold text-utama">
-          Yang Saya Pelajari
-        </h2>
-        <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-700">
-          {item.fitur.map((fitur) => (
-            <li key={fitur}>{fitur}</li>
-          ))}
-        </ul>
+
+      <article className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <div className="relative aspect-[16/9] bg-slate-100 dark:bg-gray-700">
+          <Image
+            src={item.gambar}
+            alt={`gambar ${item.judul}`}
+            fill
+            priority
+            sizes="(max-width: 896px) 100vw, 896px"
+            className="object-cover"
+          />
+        </div>
+
+        <div className="p-6 md:p-10">
+          <p className="text-sm font-medium text-slate-600 dark:text-gray-300">
+            {item.kategori} <span aria-hidden="true">&middot;</span> Dibuat di{" "}
+            {item.minggu}
+          </p>
+          <h1 className="mt-4 text-3xl font-bold text-utama dark:text-sky-200 md:text-4xl">
+            {item.judul}
+          </h1>
+          <p className="mt-4 text-lg leading-8 text-slate-600 dark:text-gray-300">
+            {item.ringkasan}
+          </p>
+
+          <section className="mt-8">
+            <h2 className="text-xl font-bold text-utama dark:text-sky-200">
+              Yang Saya Pelajari
+            </h2>
+            <ul className="mt-4 list-inside list-disc space-y-3 text-slate-600 dark:text-gray-300">
+              {item.halYangDipelajari.map((hal) => (
+                <li key={hal}>{hal}</li>
+              ))}
+            </ul>
+          </section>
+
+          <Link
+            href="/proyek"
+            className="mt-10 inline-flex rounded-lg bg-utama px-5 py-3 font-semibold text-white transition-colors hover:bg-[#142b45] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-utama"
+          >
+            Lihat semua proyek
+          </Link>
+        </div>
       </article>
     </main>
   );

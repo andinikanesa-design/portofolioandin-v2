@@ -3,33 +3,29 @@ import { keahlian } from "@/data/keahlian";
 
 export const metadata = {
   title: "Keahlian",
-  description: "Daftar keahlian dan kompetensi Andini Oktavia Dyah Putri.",
+  description: "Daftar keahlian dan kompetensi industri milik Rizki Akbar Pradana.",
 };
 
 export default function HalamanKeahlian() {
   return (
-    <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-12">
-      <h1 className="text-3xl font-bold text-utama md:text-4xl">
-        Keahlian Saya
-      </h1>
-      <p className="mb-8 mt-3 text-slate-600">
-        Daftar kompetensi dan keahlian pengembangan web yang sedang saya
-        pelajari. Pilih keahlian untuk membaca detailnya.
-      </p>
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <main className="mx-auto max-w-5xl px-6 py-12 font-sans text-gray-800 dark:text-gray-100">
+      <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100 md:text-4xl mb-3">Keahlian Saya</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-8">Daftar kompetensi dan keahlian pengembangan web yang telah saya pelajari.</p>
+      
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {keahlian.map((item) => (
           <Link
             key={item.slug}
             href={`/keahlian/${item.slug}`}
-            className="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-aksen hover:shadow-md"
+            className="block p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md hover:border-blue-500 transition-all group"
           >
-            <h2 className="text-xl font-bold text-utama group-hover:text-aksen">
+            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 group-hover:text-blue-600 transition-colors">
               {item.nama}
-            </h2>
-            <p className="mt-2 text-sm text-slate-600">
-              Level: <span className="font-semibold">{item.level}</span>
+            </h3>
+            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              Level: <span className="font-semibold text-gray-700 dark:text-gray-300">{item.level}</span>
             </p>
-            <span className="mt-4 inline-block text-sm font-semibold text-aksen">
+            <span className="mt-4 inline-block text-xs font-semibold text-blue-600 group-hover:underline">
               Lihat detail &rarr;
             </span>
           </Link>

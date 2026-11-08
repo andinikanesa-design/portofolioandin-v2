@@ -1,41 +1,55 @@
-import Link from "next/link";
+import FormKontak from "@/components/FormKontak";
 
 export const metadata = {
   title: "Kontak",
-  description: "Informasi kontak Andini Oktavia Dyah Putri.",
+  description: "Andini Oktavia Dyah Putri.",
 };
 
-export default function Kontak() {
+export default function FormKontakPage() {
   return (
-    <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-12 font-sans text-slate-800">
-      <section className="rounded-xl border border-slate-200 bg-white p-8 shadow-sm">
-        <p className="text-sm font-semibold uppercase tracking-wide text-rose-700">
-          Kontak
+    <main className="mx-auto w-full max-w-6xl px-5 py-10 md:px-8 md:py-16">
+      <header className="mb-8">
+        <p className="font-semibold text-aksen dark:text-red-400">
+          Ada pertanyaan?
         </p>
-        <h1 className="mt-2 text-3xl font-bold text-slate-900 md:text-4xl">
+        <h1 className="mt-2 text-3xl font-bold text-utama dark:text-sky-200 md:text-4xl">
           Hubungi Saya
         </h1>
-        <p className="mt-4 max-w-2xl leading-7 text-slate-600">
-          Terima kasih sudah mengunjungi portofolio saya. Saya senang belajar
-          tentang pengembangan web dan terbuka untuk berdiskusi mengenai
-          proyek-proyek yang saya buat.
+        <p className="mt-3 max-w-2xl leading-7 text-slate-600 dark:text-gray-300">
+          Punya pertanyaan atau ingin bekerja sama? Isi formulir berikut.
         </p>
-        <p className="mt-4 text-slate-600">
-          Email:{" "}
-          <a
-            href="mailto:andinikanesa@gmail.com"
-            className="font-semibold text-rose-700 hover:underline"
-          >
-            andinikanesa@gmail.com
-          </a>
-        </p>
-        <Link
-          href="/proyek"
-          className="mt-6 inline-block rounded-lg bg-rose-700 px-5 py-3 font-semibold text-white transition hover:bg-rose-800"
-        >
-          Lihat proyek saya
-        </Link>
-      </section>
+      </header>
+
+      <div className="grid grid-cols-1 items-stretch gap-4 sm:grid-cols-[minmax(0,2fr)_minmax(10rem,1fr)] md:gap-5">
+        <FormKontak />
+        <aside className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
+          <h2 className="text-xl font-bold text-utama dark:text-sky-200">
+            Temukan Saya di
+          </h2>
+          <ul className="mt-3 space-y-3">
+            <li>
+              <a
+                href="https://github.com/andinikanesa-design"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="break-all text-sm text-aksen hover:underline focus-visible:rounded-sm focus-visible:outline-2
+                 focus-visible:outline-offset-2 focus-visible:outline-aksen dark:text-red-400"
+              >
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a
+                href="mailto:andinikanesa@gmail.com"
+                className="break-all text-sm text-aksen hover:underline focus-visible:rounded-sm focus-visible:outline-2
+                focus-visible:outline-offset-2 focus-visible:outline-aksen dark:text-red-400"
+              >
+                andinikanesa@gmail.com
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </div>
     </main>
   );
 }

@@ -1,39 +1,97 @@
-import Link from "next/link";
+import Image from "next/image";
 
 export const metadata = {
-  title: "Tentang Saya",
-  description: "Kenali Andini Oktavia Dyah Putri dan cita-citanya.",
+  title: "Tentang",
+  // 1. Mengubah deskripsi metadata menjadi nama Anda (Andi Pratama)
+  description: "Cerita, hobi, cita-cita, dan jadwal belajar Andi Pratama.",
 };
 
 export default function Tentang() {
-  return (
-    <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-12">
-      <section className="rounded-xl border border-slate-200 bg-white p-8 shadow-sm">
-        <p className="text-sm font-semibold uppercase tracking-wide text-aksen">
-          Tentang
-        </p>
-        <h1 className="mt-2 text-3xl font-bold text-utama md:text-4xl">
-          Andini Oktavia Dyah Putri
-        </h1>
-        <p className="mt-5 max-w-3xl leading-7 text-slate-700">
-          Saya adalah siswi Rekayasa Perangkat Lunak di SMKN 1 Kepanjen yang
-          senang mencoba hal baru di dunia teknologi. Saat ini saya sedang
-          belajar membuat website dan ingin mengembangkan kemampuan agar dapat
-          membuat karya digital yang bermanfaat.
-        </p>
-        <h2 className="mt-8 text-xl font-bold text-utama">Cita-cita</h2>
-        <p className="mt-2 leading-7 text-slate-700">
-          Saya bercita-cita menjadi Full Stack Web Developer. Untuk
-          mencapainya, saya terus belajar pemrograman, berlatih membuat proyek,
-          dan mengembangkan kemampuan web development.
-        </p>
-        <Link
-          href="/keahlian"
-          className="mt-6 inline-block rounded-lg bg-aksen px-5 py-3 font-semibold text-white transition hover:bg-rose-800"
-        >
-          Lihat keahlian saya
-        </Link>
-      </section>
-    </main>
-  );
+
+  const jadwalBelajar = [
+    { hari: "Senin", waktu: "19.00 - 20.00", kegiatan: "Membaca ulang modul" },
+    { hari: "Selasa", waktu: "19.00 - 21.00", kegiatan: "Mengerjakan tugas praktik" },
+    { hari: "Rabu", waktu: "19.30 - 20.30", kegiatan: "Merekam video dan menulis laporan" },
+  ];
+  
+ return (
+   // 2. Ditambahkan class "space-y-6" pada tag <main> agar setiap section otomatis memiliki jarak vertikal yang rapi dan konsisten
+   <main className="mx-auto max-w-5xl px-4 py-10 space-y-6">
+     
+     <h1 className="text-3xl font-bold text-utama dark:text-sky-200 md:text-4xl">Perkenalan</h1>
+
+     {/* Section 2: Tentang Saya */}
+     <section id="tentang-saya" className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 scroll-mt-6">
+       <div className="flex flex-col items-center gap-6 sm:flex-row">
+         <Image
+           src="/andyn.png"
+           alt="Foto Andini Oktavia Dyah Putri"
+           width={240}
+           height={240}
+           className="h-40 w-40 shrink-0 rounded-full border-4 border-red-600 object-cover object-[65%_center]"
+         />
+         <div>
+           <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">Tentang Saya</h2>
+           <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-sm md:text-base">
+             Saya tinggal di Malang dan senang mencoba hal baru di dunia teknologi. Saya ingin bisa membuat website yang bermanfaat untuk sekolah dan UMKM di sekitar rumah.
+           </p>
+         </div>
+       </div>
+     </section>
+
+     {/* Section 3 & 4: Hobi & Cita-Cita Grid */}
+     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+       
+       {/* Hobi - Diubah menggunakan list-disc biasa agar tanda bullet poin tidak menabrak teks */}
+       <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+         <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">Hobi</h2>
+         <ul className="list-disc pl-5 text-gray-600 dark:text-gray-400 text-sm md:text-base space-y-2">
+           <li>Berkebun</li>
+           <li>Membaca Buku</li>
+           <li>Mendesain poster</li>
+         </ul>
+       </section>
+
+       {/* Cita-Cita */}
+       <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+         <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">Cita-cita</h2>
+         <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base mb-3">
+           Menjadi <span className="font-bold text-gray-800 dark:text-gray-100">Full Stack Web Developer</span>. Langkah yang saya rencanakan:
+         </p>
+         <ol className="list-decimal pl-5 text-gray-600 dark:text-gray-400 text-sm md:text-base space-y-2">
+           <li>Menuntaskan Kelas Industri UBIG sampai tuntas</li>
+           <li>Magang di perusahaan teknologi</li>
+           <li>Bekerja sebagai Web Developer</li>
+         </ol>
+       </section>
+     </div>
+
+     {/* Section 6: Jadwal Belajar */}
+     <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+       <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-5">Jadwal Belajar</h2>
+       <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+         <table className="w-full text-left border-collapse text-sm md:text-base">
+           <thead>
+             {/* Mengganti warna bg menjadi bg-[#0d233a] agar selaras dengan tema Navbar utama */}
+             <tr className="bg-[#0d233a] text-white">
+               <th className="p-4 font-semibold">Hari</th>
+               <th className="p-4 font-semibold">Waktu</th>
+               <th className="p-4 font-semibold">Kegiatan</th>
+             </tr>
+           </thead>
+           <tbody className="text-gray-600 dark:text-gray-400 divide-y divide-gray-200 dark:divide-gray-700">
+             {jadwalBelajar.map((item, index) => (
+               <tr key={index} className="hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors">
+                 <td className="p-4 font-medium">{item.hari}</td>
+                 <td className="p-4">{item.waktu}</td>
+                 <td className="p-4">{item.kegiatan}</td>
+               </tr>
+             ))}
+           </tbody>
+         </table>
+       </div>
+     </section>
+
+   </main>
+ );
 }

@@ -2,34 +2,46 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function ProyekCard({ proyek }) {
+  const { slug, judul, deskripsi, gambar, teknologi } = proyek;
+
   return (
-    <Link
-      href={`/proyek/${proyek.slug}`}
-      className="block overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-2 hover:shadow-lg"
-    >
-      <Image
-        src={proyek.gambar}
-        alt={`Pratinjau tugas ${proyek.judul}`}
-        width={640}
-        height={420}
-        className="h-48 w-full object-cover"
-      />
-      <div className="p-5">
-        <div className="mb-4 flex flex-wrap gap-2">
-          {proyek.teknologi.map((teknologi) => (
-            <span
-              key={teknologi}
-              className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-[#203b60]"
-            >
-              {teknologi}
-            </span>
-          ))}
+    <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-800">
+      <Link
+        href={`/proyek/${slug}`}
+        className="group block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-utama"
+        aria-label={`Lihat detail ${judul}`}
+      >
+        <div className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-gray-700">
+          <Image
+            src={gambar}
+            alt={`Tampilan ${judul}`}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+          />
         </div>
-        <h2 className="mt-3 text-lg font-semibold text-utama">
-          {proyek.judul}
-        </h2>
-        <p className="mt-1 text-sm text-gray-600">{proyek.deskripsi}</p>
-      </div>
-    </Link>
+        <div className="p-5">
+          <ul
+            aria-label="Teknologi yang digunakan"
+            className="mb-4 flex flex-wrap gap-2"
+          >
+            {teknologi.map((nama) => (
+              <li
+                key={nama}
+                className="rounded-full bg-latar px-2.5 py-1 text-xs text-slate-700 dark:bg-gray-700 dark:text-gray-200"
+              >
+                {nama}
+              </li>
+            ))}
+          </ul>
+          <h3 className="text-lg font-bold text-utama dark:text-sky-200">
+            {judul}
+          </h3>
+          <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-600 dark:text-gray-300">
+            {deskripsi}
+          </p>
+        </div>
+      </Link>
+    </article>
   );
 }

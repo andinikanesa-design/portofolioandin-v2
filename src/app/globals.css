@@ -1,23 +1,9 @@
 @import "tailwindcss";
 
-@theme {
-  --color-utama: #1d3557;
-  --color-aksen: #c1121f;
-  --color-latar: #f1faee;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  min-height: 100vh;
-  background-color: var(--color-latar);
-  color: #203b60;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-a:focus-visible {
-  outline: 3px solid var(--color-aksen);
-  outline-offset: 3px;
+@theme {  
+  --color-utama: #1D3557;  
+  --color-aksen: #C1121F;  
+  --color-latar: #F1FAEE; 
 }

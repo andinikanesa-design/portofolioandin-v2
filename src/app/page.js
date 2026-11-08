@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Hero from "@/components/Hero";
-import Kartu from "@/components/Kartu";
 import SkillCard from "@/components/SkillCard";
 import ProyekCard from "@/components/ProyekCard";
 import { keahlian } from "@/data/keahlian";
@@ -13,33 +12,6 @@ export default function Home() {
         nama="Andini Oktavia Dyah Putri"
         tagline="Siswi kelas X SMK, calon Junior Web Developer di Kelas Industri."
       />
-
-      <section id="tentang">
-        <Kartu judul="Tentang Saya">
-          Saya adalah siswi Rekayasa Perangkat Lunak di SMKN 1 Kepanjen dan
-          senang mencoba hal baru di dunia teknologi. Saya ingin mengembangkan
-          kemampuan membuat website yang bermanfaat.
-        </Kartu>
-      </section>
-
-      <div className="grid gap-6 md:grid-cols-2">
-        <Kartu judul="Hobi">
-          <ul className="list-inside list-disc space-y-1">
-            <li>Bersepeda</li>
-            <li>Belajar pemrograman</li>
-            <li>Mengembangkan website</li>
-          </ul>
-        </Kartu>
-        <Kartu judul="Cita-cita">
-          Menjadi <strong>Full Stack Web Developer</strong>. Langkah yang saya
-          rencanakan:
-          <ol className="mt-2 list-inside list-decimal space-y-1">
-            <li>Mempelajari pemrograman secara konsisten</li>
-            <li>Membuat proyek website</li>
-            <li>Mengembangkan kemampuan web development</li>
-          </ol>
-        </Kartu>
-      </div>
 
       <section id="keahlian" className="scroll-mt-8">
         <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
