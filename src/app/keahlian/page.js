@@ -3,7 +3,7 @@ import { keahlian } from "@/data/keahlian";
 
 export const metadata = {
   title: "Keahlian",
-  description: "Daftar keahlian dan kompetensi industri milik Rizki Akbar Pradana.",
+  description: "Daftar keahlian dan kompetensi industri milik Andini Oktavia Dyah Putri.",
 };
 
 export default function HalamanKeahlian() {
